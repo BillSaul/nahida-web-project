@@ -1,0 +1,11 @@
+services:
+  nahida-web-project:
+    image: nahida-web-project:0.1
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Shanghai
+    ports:
+      - "3000:3000"
+    network_mode: bridge
+    container_name: nahida-web-project
+    hostname: nahida-web-project

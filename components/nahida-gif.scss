@@ -1,0 +1,25 @@
+.gif-body {
+  position: absolute;
+  z-index: 8;
+  width: 100%;
+  height: 300px;
+  bottom: 0;
+  right: 0;
+
+  .gif-box {
+    position: absolute;
+    top: 0;
+    right: 0;
+    animation: moveLeft 3s linear forwards;
+  }
+}
+
+/* 动画 */
+@keyframes moveLeft {
+  from {
+    right: -300px; /* 初始位置在容器右边外 */
+  }
+  to {
+    right: 100%; /* 移动到屏幕左边外 */
+  }
+}
