@@ -1,5 +1,6 @@
 import HomeBox1 from "@/components/home/home-box1";
 import HomeBox2 from "@/components/home/home-box2";
+import HomeBox3 from "@/components/home/home-box3";
 import type { Metadata } from "next";
 import "./page.scss";
 
@@ -21,10 +22,13 @@ export default function Home() {
         </div>
       )}
       <section>
+        <HomeBox2 />
+      </section>
+      <section>
         <HomeBox1 />
       </section>
       <section>
-        <HomeBox2 />
+        <HomeBox3 />
       </section>
     </div>
   );
