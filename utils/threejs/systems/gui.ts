@@ -6,14 +6,14 @@ import GUI from "three/examples/jsm/libs/lil-gui.module.min.js";
  * @returns 返回一个GUI实例
  */
 function createGui(...objects: any[]): GUI {
-  const [helper, scene] = objects;
+  const [helper] = objects;
 
   // 模型列表
-  const models = {
-    nahida: "/models/纳西妲/纳西妲.pmx",
-    robin: "/models/知更鸟/知更鸟.pmx",
-    HoshimiMiyabi: "/models/星见雅/星见雅.pmx",
-  };
+  // const models = {
+  //   nahida: "/models/纳西妲/纳西妲.pmx",
+  //   robin: "/models/知更鸟/知更鸟.pmx",
+  //   HoshimiMiyabi: "/models/星见雅/星见雅.pmx",
+  // };
 
   const options = {
     model: "nahida",
@@ -27,9 +27,9 @@ function createGui(...objects: any[]): GUI {
   const gui = new GUI();
 
   // 模型切换选项
-  gui.add(options, "model", Object.keys(models)).onChange((value) => {
-    console.log("🚀 ~ value:", value);
-  });
+  // gui.add(options, "model", Object.keys(models)).onChange((value) => {
+  //   console.log("🚀 ~ value:", value);
+  // });
   // 动画开关
   gui.add(options, "animation").onChange(() => {
     helper.enable("animation", options["animation"]);
@@ -54,7 +54,5 @@ function createGui(...objects: any[]): GUI {
 
   return gui;
 }
-
-fun;
 
 export { createGui };

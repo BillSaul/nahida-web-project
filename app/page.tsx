@@ -22,10 +22,10 @@ export default function Home() {
         </div>
       )}
       <section>
-        <HomeBox2 />
+        <HomeBox1 />
       </section>
       <section>
-        <HomeBox1 />
+        <HomeBox2 />
       </section>
       <section>
         <HomeBox3 />

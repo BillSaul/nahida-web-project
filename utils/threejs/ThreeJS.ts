@@ -1,4 +1,5 @@
 import {
+  Group,
   Mesh,
   MeshStandardMaterial,
   PerspectiveCamera,
@@ -6,6 +7,7 @@ import {
   Scene,
   WebGLRenderer,
 } from "three";
+import GUI from "three/examples/jsm/libs/lil-gui.module.min.js";
 import Stats from "three/examples/jsm/libs/stats.module.js";
 import { createCamera } from "./components/camera";
 import { createAxesHelper, createGridHelper } from "./components/helpers";
@@ -25,8 +27,10 @@ class ThreeJS {
   #loop: any;
   #controls: any;
   #stats: any;
+  #gui: GUI | undefined;
 
   constructor(container: HTMLElement) {
+    this.#gui = undefined;
     this.#camera = createCamera(); // 创建相机
     this.#scene = createScene(); // 创建场景
     this.#renderer = createRenderer(); // 创建渲染器
@@ -76,10 +80,15 @@ class ThreeJS {
    * 初始化函数，加载模型
    */
   async init() {
+    const group = new Group();
     const { mmd, helper } = await setupModel(); // 加载模型
 
+    group.add(mmd.mesh); // 将模型添加到组中
+    group.add(helper.ikHelper); // 将 IK 助手添加到组中
+    group.add(helper.physicsHelper); // 将物理助手添加到组中
+
     // 创建 GUI
-    createGui(helper, [this.#scene, mmd.mesh]); // 创建GUI
+    this.#gui = createGui(helper, [this.#scene, mmd.mesh]); // 创建GUI
 
     // 添加到循环器的更新列表中
     this.#loop.updatables.push(helper);
@@ -88,9 +97,7 @@ class ThreeJS {
     // this.#controls.target.copy(mmd.mesh.position);
     this.#controls.target.set(0, 10, 0);
 
-    this.#scene.add(mmd.mesh); // 将模型添加到场景中
-    this.#scene.add(helper.ikHelper); // 将 IK 助手添加到场景中
-    this.#scene.add(helper.physicsHelper); // 将物理助手添加到场景中
+    this.#scene.add(group);
   }
 
   /**
@@ -104,6 +111,7 @@ class ThreeJS {
    * 开始动画循环
    */
   start() {
+    this.#gui!.show(); // 显示 GUI
     this.#loop.start(this.#stats);
   }
 
@@ -111,6 +119,7 @@ class ThreeJS {
    * 停止动画循环
    */
   stop() {
+    this.#gui!.hide(); // 隐藏 GUI
     this.#loop.stop();
   }
 }

@@ -4,9 +4,9 @@
   scroll-snap-type: y mandatory;
 
   // 隐藏滚动条
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  // &::-webkit-scrollbar {
+  //   display: none;
+  // }
 
   section {
     scroll-snap-align: start;

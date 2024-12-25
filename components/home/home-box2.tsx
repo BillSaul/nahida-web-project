@@ -7,22 +7,6 @@ import "./home-box2.scss";
 export default function HomeBox2() {
   const sceneContainer = useRef<any>(null);
 
-  // 向上滚动全屏的一半
-  const handleScrollUp = () => {
-    window.scrollTo({
-      top: window.innerHeight / 2,
-      behavior: "smooth",
-    });
-  };
-
-  // 向下滚动全屏的一半
-  const handleScrollDown = () => {
-    window.scrollTo({
-      top: window.innerHeight * 1.5,
-      behavior: "smooth",
-    });
-  };
-
   const initThree = async () => {
     const three = new Three(sceneContainer.current);
 
@@ -59,13 +43,7 @@ export default function HomeBox2() {
 
   return (
     <div className="home-box2">
-      <div className="scroll-up" onClick={handleScrollUp}>
-        点我向上滚动
-      </div>
       <div ref={sceneContainer} className="scene-container"></div>
-      <div className="scroll-down" onClick={handleScrollDown}>
-        点我向下滚动
-      </div>
     </div>
   );
 }
